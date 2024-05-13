@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<title>Login 04</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+	<section class="ftco-section" style="background: rgb(177,176,160);
+	background: linear-gradient(90deg, rgba(177,176,160,1) 0%, rgba(204,162,114,1) 100%);">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-12 col-lg-10">
+					<div class="wrap d-md-flex">
+						<div class="img" style="background-image: url(images/bg-1.jpg);">
+						</div>
+						<div class="login-wrap p-4 p-md-5">
+							<div class="d-flex">
+								<div class="w-100">
+									<h3 class="mb-4 pt-2">Sign In</h3>
+								</div>
+								<div class="w-100">
+									<p class="social-media d-flex justify-content-end">
+										<a href="#" class="d-flex align-items-center justify-content-center"><img
+												src="images/Jindal logo Revised.png" width="110"></a>
+
+									</p>
+								</div>
+							</div>
+							<form action="#" class="signin-form">
+								<div class="form-group mb-3">
+									<label class="label" for="name">Username</label>
+									<input id="txtuser" type="text" class="form-control" placeholder="Username" required>
+								</div>
+								<div class="form-group mb-3">
+									<label class="label" for="password">Password</label>
+									<input type="password" class="form-control" placeholder="Password" required>
+								</div>
+								<div class="form-group">
+									<a href="javascript:login();"button type="submit" class="form-control btn btn-primary rounded submit px-3" type="button">LOGIN</a>									
+									<!-- <a href="javascript:login();" button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign
+										In</button></a> -->
+								</div>
+								<div class="form-group d-md-flex">
+									<div class="w-50 text-left">
+										<label class="checkbox-wrap checkbox-primary mb-0">Remember Me
+											<input type="checkbox" checked>
+											<span class="checkmark"></span>
+										</label>
+									</div>
+									<div class="w-50 text-md-right">
+										<a href="#">Forgot Password</a>
+									</div>
+								</div>
+							</form>
+							<p class="text-center">Not a member? <a data-toggle="tab" href="#signup">Sign Up</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	 <!-- Bootstrap core JS-->
+	 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+	 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+ 
+	 <!-- JavaScript Libraries -->
+	 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+	 <script src="js/main.js"></script>
+
+	<!---login script-->	
+
+	<script language="javascript">
+	  function login() {
+		  if (txtuser.value == 'sms@jindalsteel.com') {
+			  window.location.href = "index.html"
+		  }
+		  else {
+            if (txtuser.value == 'railmill@jindalsteel.com') {
+                { window.location.href = "index.html" }
+            }
+            
+            else { alert("Please use sms@jindalsteel.com to login. This is for demo purpose only") }
+        }
+    }
+  
+  </script>
+</body>
+
+</html>

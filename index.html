@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Web portal</title>
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+	<script src="https://kit.fontawesome.com/f3e12c392f.js" crossorigin="anonymous"></script>
+	<link href="assets/css/nucleo-svg.css" rel="stylesheet" />
+
+	<!--datatable-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" />
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" />
+
+	<style>
+		table {
+			border-collapse: collapse;
+			border-spacing: 0;
+			width: 100%;
+			border: 1px solid #ddd;
+		}
+
+		th {
+			text-align: left;
+			padding: 8px;
+			border: 1px solid #e5e3e3;
+			font-size: 12px;
+			font-weight: 700;
+		}
+
+		td {
+			text-align: left;
+			padding: 8px;
+			border: 1px solid #e5e3e3;
+			font-size: 12px;
+
+		}
+
+		.space {
+			width: 100px;
+		}
+
+		.space-th {
+			width: 100px;
+		}
+
+		.form-control-border {
+			color: #333 !important;
+			border-color: #f89238;
+			border-radius: 5px !important;
+			box-shadow: none;
+			border-color: #d2d6de;
+			padding-left: 5px !important;
+			height: 28px !important;
+		}
+
+		div.td-w100 {
+			word-wrap: break-word;
+			width: 120px;
+		}
+
+		div.td-w50 {
+			word-wrap: break-word;
+			width: 30px;
+		}
+
+		.bg-th {
+			background-color: #caa5a5;
+		}
+	</style>
+</head>
+
+<body style="background: rgb(177,176,160);
+background: linear-gradient(90deg, rgba(177,176,160,1) 0%, rgba(204,162,114,1) 100%);">
+
+	<section class="ftco-section">
+		<nav class="navbar navbar-expand-lg navbar-light bg-white">
+			<div class="container-fluid">
+				<a href="#" class="navbar-brand"><img src="images/Jindal logo Revised.png" width="100"></a>
+				<button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarCollapse">
+
+					<div class="navbar-nav ms-auto">
+						<a href="#" class="nav-item nav-link"><i class="fa fa-user me-sm-1" aria-hidden="true"></i>
+							sms@jindalsteel.com</a>
+						<a href="login.html" class="nav-item nav-link"><i class="fa fa-archive" aria-hidden="true"></i>
+							Logout</a>
+						<!-- <a href="#" class="nav-item nav-link"><i class="fa fa-bars" aria-hidden="true"></i> Menu</a> -->
+					</div>
+				</div>
+			</div>
+		</nav>
+	</section>
+	<!--navebar end-->
+
+	<!---main body-->
+	<section class="ftco-section">
+		<div class="container-fluid">
+			<div class="row px-3" style="height: 100px; background-image: url('images/banner.jpg'); background-size: cover;
+			position: relative; background-repeat: no-repeat; background-position: top;">
+				<h5 class="text-start"></h5>
+				<!-- <img src="images/banner.jpg" class="img-fluid"> -->
+			</div>
+		</div>
+	</section>
+
+	<!---body content-->
+	<section class="ftco-section px-3 py-3">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="card mb-2" style="background: rgb(177,176,160);
+				background: linear-gradient(90deg, rgba(177,176,160,1) 0%, rgba(236,177,109,1) 100%); border: none;">
+					<div class="card-body d-flex justify-content-end gap-2">
+						<!-- <h5>Details View</h5> -->
+						<a href="#" data-bs-toggle="modal" data-bs-target="#myModal"><button type="button"
+								class="btn btn-success"><i class="fa fa-pencil-square-o"></i> Create </button></a>
+						<a href="create-sms.html"><button type="button" class="btn btn-dark"> <i
+									class="fa fa-file-excel-o" aria-hidden="true"></i> Export to Excel </button></a>
+					</div>
+				</div>
+
+				<div class="card" style="padding: 0px;">
+					<div class="card-body">
+
+						<table id="example" class="display nowrap" style="width:100%">
+							<thead>
+								<tr class="bg-th">
+									<th>#</th>
+									<th>Time (HRS)</th>
+									<th>Created Date</th>
+									<th>Power Generation </th>
+									<th>Load Schedule SMS (MW)</th>
+									<th>Load Schedule Rail Mill (MW)</th>
+									<th>Load Schedule Plate Mill (MW)</th>
+									<th>Load Schedule SPM (MW)</th>
+									<th>Load Schedule NSPL (MW)</th>
+									<th>Total (MW)</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr>
+									<td>1</td>
+
+									<td>00:15-00:30</td>
+
+									<td>12-09-2023</td>
+
+									<td>0.00</td>
+
+									<td>0.00</td>
+									<td>0.00</td>
+									<td>0.00</td>
+
+									<td>0.00</td>
+									<td>0.00</td>
+									<td>22.00</td>
+								</tr>
+
+								<tr>
+									<td>2</td>
+
+									<td>00:15 - 00:30</td>
+
+									<td>12-09-2023</td>
+
+									<td>0.00</td>
+
+									<td>0.00</td>
+									<td>0.00</td>
+									<td>0.00</td>
+									<td>0.00</td>
+									<td>0.00</td>
+									<td>22.00
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!----Edit Modal-->
+	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header" style="background: rgb(177,176,160);
+		background: linear-gradient(90deg, rgba(177,176,160,1) 0%, rgba(236,177,109,1) 100%); border: none;">
+					<h1 class="modal-title fs-5" id="staticBackdropLabel">Edit <i class="fa fa-pencil-square-o"></i>
+					</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="card">
+						<div class="card-body px-4">
+							<div class="row">
+								<div class="card mb-2" style="background: rgb(177,176,160);
+										background: linear-gradient(90deg, rgba(177,176,160,1) 0%, rgba(236,177,109,1) 100%); border: none;">
+									<div class="card-body  d-flex justify-content-sm-between p-2 gap-2">
+										<h5 class="">SMS</h5>
+										<div class="form-outline">
+											<select class="form-select" aria-label="">
+												<option selected="">Select Time in Hours</option>
+												<option value="1">00:15 - 00:30</option>
+												<option value="2">00:30 - 00:45</option>
+												<option value="2">00:45 - 01:00</option>
+												<option value="2">01:00 - 01:15</option>
+												<option value="2">01:15 - 01:30</option>
+												<option value="2">01:30 - 01:45</option>
+												<option value="2">01:45 - 02:00</option>
+												<option value="2">02:00 - 02:15</option>
+												<option value="2">02:15 - 02:30</option>
+												<option value="2">02:30 - 02:45</option>
+												<option value="2">02:45 - 03:00</option>
+												<option value="2">03:00 - 03:15</option>
+												<option value="2">03:15 - 03:30</option>
+												<option value="2">03:30 - 03:45</option>
+												<option value="2">03:45 - 04:00</option>
+												<option value="2">04:00 - 04:15</option>
+												<option value="2">04:15 - 04:30</option>
+												<option value="2">04:30 - 04:45</option>
+												<option value="2">04:45 - 05:00</option>
+
+												<option>05:00 - 05:15</option>
+												<option>05:15 - 05:30</option>
+												<option>05:30 - 05:45</option>
+												<option>05:45 - 06:00</option>
+												<option>06:00 - 06:15</option>
+												<option>06:15 - 06:30</option>
+												<option> 06:30 - 06:45</option>
+												<option>06:45 - 07:00</option>
+												<option>07:00 - 07:15</option>
+												<option>07:15 - 07:30</option>
+												<option>07:30 - 07:45</option>
+												<option>07:45 - 08:00</option>
+												<option>08:00 - 08:15</option>
+												<option>08:15 - 08:30</option>
+												<option>08:30 - 08:45</option>
+												<option>08:45 - 09:00</option>
+												<option>09:00 - 09:15</option>
+												<option>09:15 - 09:30</option>
+												<option>09:30 - 09:45</option>
+												<option>09:45 - 10:00</option>
+												<option>10:00 - 10:15</option>
+												<option>10:15 - 10:30</option>
+												<option>10:30 - 10:45</option>
+												<option>10:45 - 11:00</option>
+												<option>11:00 - 11:15</option>
+												<option>11:15 - 11:30</option>
+												<option>11:30 - 11:45</option>
+												<option> 11:45 - 12:00</option>
+												<option>12:00 - 12:15</option>
+												<option>12:15 - 12:30</option>
+												<option>12:30 - 12:45</option>
+												<option> 12:45 - 13:00</option>
+												<option> 13:00 - 13:15</option>
+												<option>13:15 - 13:30</option>
+												<option> 13:30 - 13:45</option>
+												<option> 13:45 - 14:00</option>
+												<option>14:00 - 14:15</option>
+												<option> 14:15 - 14:30</option>
+												<option>14:30 - 14:45</option>
+												<option> 14:45 - 15:00</option>
+												<option>15:00 - 15:15</option>
+												<option> 15:15 - 15:30</option>
+												<option>15:30 - 15:45</option>
+												<option>15:45 - 16:00</option>
+												<option>16:00 - 16:15</option>
+												<option>16:15 - 16:30</option>
+												<option> 16:30 - 16:45</option>
+												<option> 16:45 - 17:00</option>
+												<option> 17:00 - 17:15</option>
+												<option> 17:15 - 17:30</option>
+												<option> 17:30 - 17:45</option>
+												<option> 17:45 - 18:00</option>
+												<option> 18:00 - 18:15</option>
+												<option>18:15 - 18:30</option>
+												<option> 18:30 - 18:45</option>
+												<option> 18:45 - 19:00</option>
+												<option> 19:00 - 19:15</option>
+												<option> 19:15 - 19:30</option>
+												<option> 19:30 - 19:45</option>
+												<option>19:45 - 20:00</option>
+												<option> 20:00 - 20:15</option>
+												<option>20:15 - 20:30</option>
+												<option> 20:30 - 20:45</option>
+												<option>20:45 - 21:00</option>
+												<option> 21:00 - 21:15</option>
+												<option> 21:15 - 21:30</option>
+												<option>21:30 - 21:45</option>
+												<option> 21:45 - 22:00</option>
+												<option> 22:00 - 22:15</option>
+												<option> 22:15 - 22:30</option>
+												<option>22:30 - 22:45</option>
+												<option> 22:45 - 23:00</option>
+												<option>23:00 - 23:15</option>
+												<option>23:45 - 24:00</option>
+
+											</select>
+										</div>
+									</div>
+								</div>
+
+								<div class="card" style="padding: 0px;">
+									<div class="card-body">
+										<div class="row">
+											<div class="row">
+												<div class="col-sm-4">
+
+													<div class="cs-form">
+														<label class="form-label" for="form8Example2">Current
+															Time:</label>
+														<input type="time" class="form-control" value="10:05 AM" />
+													</div>
+												</div>
+												<div class="col-sm-4">
+
+													<div class="form-outline">
+														<label class="form-label" for="form8Example2">Current
+															Date:</label>
+														<input type="date" name="current-date" class="form-control"
+															value="" required="" placeholder="Date">
+													</div>
+												</div>
+
+												<div class="col-sm-4">
+
+													<div class="form-outline">
+														<label class="form-label" for="form8Example2">Power Generation
+														</label>
+														<input type="file" class="form-control" id="customFile">
+													</div>
+													<span class="small"><i>Plese upload the excel file</i></span>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a href="#"><button type="button" class="btn btn-success">Save</button></a>
+					<a href=""><button type="button" class="btn btn-secondary">Upadate</button></a>
+					<a href=""><button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button></a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!----footer-->
+	<div class="container-fluid p-0">
+		<footer class="bg-dark text-center text-white">
+
+			<!-- Copyright -->
+			<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+				© 2023 Copyright:
+				<a class="text-white" href="https://mdbootstrap.com/">jindalsteel.com</a>
+			</div>
+			<!-- Copyright -->
+		</footer>
+	</div>
+	<!-- End of .container -->
+
+	<!-- The create Modal -->
+	<div class="modal fade" id="myModal">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">SMS</h4>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="cs-form">
+								<label class="form-label" for="form8Example2">Current Time:</label>
+								<input type="time" class="form-control" value="10:05 AM" />
+							</div>
+						</div>
+						<div class="col-sm-4">
+
+							<div class="form-outline">
+								<label class="form-label" for="form8Example2">Current Date:</label>
+								<input type="date" name="current-date" class="form-control" value="" required=""
+									placeholder="Date">
+							</div>
+						</div>
+
+						<div class="col-sm-4">
+
+							<div class="form-outline">
+								<label class="form-label" for="form8Example2">Power Generation
+								</label>
+								<input type="file" class="form-control" id="customFile">
+							</div>
+							<span class="small"><i>Plese upload the excel file</i></span>
+						</div>
+					</div>
+				</div>
+
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success">Submi</button>
+					<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Bootstrap core JS-->
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+
+	<!-- JavaScript Libraries -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+	<script src="js/main.js"></script>
+
+	<!--datatable js-->
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+
+
+	<script>
+		$(document).ready(function () {
+			$('#example').DataTable({
+				scrollY: 400,
+				scrollX: true,
+
+
+			});
+		});
+	</script>
+	<!---login script-->
+	<script language="javascript">
+		function login() {
+			if (txtuser.value == 'user@jindalsteel.com') {
+				window.location.href = "index.html"
+			}
+			else {
+
+				alert("Please use user@jindalsteel.com to login. This is for demo purpose only")
+			}
+		}
+
+	</script>
+
+
+</body>
+
+</html>
