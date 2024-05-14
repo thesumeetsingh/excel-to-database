@@ -21,7 +21,25 @@
         #myTable {
             overflow-x: auto; /* Enable horizontal scrolling */
         }
-        
+        /* Styling for the table */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 2px solid #e8e4e4;
+            padding: 8px;
+            text-align: left;
+        }
+        th,
+        tr:nth-child(-n+2) {
+            background-color: #d0a4a4;
+            font-weight: bold;
+        }
+        tr:not(:nth-child(-n+2)):hover {
+    background-color: #f2f2f2;
+}
+
     </style>
 </head>
 <body>
