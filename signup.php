@@ -24,6 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone = $_POST['phone'];
     $age = $_POST['age'];
     $gender = $_POST['gender'];
+    $department = $_POST['department']; // Added department variable
 
     // Check if username already exists
     $stmt = $conn->prepare("SELECT * FROM user_details WHERE USERNAME = ?");
@@ -37,8 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit; // Stop further execution after redirection
     } else {
         // Insert user details into the database
-        $stmt = $conn->prepare("INSERT INTO user_details (FIRSTNAME, LASTNAME, USERNAME, PASSWORD, EMAILADD, PHONENUMBER, AGE, GENDER) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssssis", $firstName, $lastName, $username, $password, $email, $phone, $age, $gender);
+        $stmt = $conn->prepare("INSERT INTO user_details (FIRSTNAME, LASTNAME, USERNAME, PASSWORD, EMAILADD, PHONENUMBER, AGE, GENDER, DEPT) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssssiss", $firstName, $lastName, $username, $password, $email, $phone, $age, $gender, $department); // Added department binding
         
         if ($stmt->execute()) {
             echo '<script>alert("User registered successfully.");</script>';

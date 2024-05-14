@@ -83,6 +83,18 @@
                                         <label class="form-check-label" for="female">Female</label>
                                     </div>
                                 </div>
+                                <!-- Department dropdown -->
+                                <div class="form-group mb-3">
+                                    <label class="label" for="department">Department</label>
+                                    <select id="department" name="department" class="form-control" required>
+                                        <option value="">Select Department</option>
+                                        <option value="SMS">SMS</option>
+                                        <option value="RAILMILL">RAILMILL</option>
+                                        <option value="PLATEMILL">PLATEMILL</option>
+                                        <option value="SPM">SPM</option>
+                                        <option value="NSPL">NSPL</option>
+                                    </select>
+                                </div>
                                 <div class="form-group">
                                     <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign Up</button>
                                 </div>
@@ -116,6 +128,7 @@
             var age = document.getElementById("age").value.trim();
             var password = document.getElementById("password").value;
             var confirmPassword = document.getElementById("confirmPassword").value;
+            var department = document.getElementById("department").value;
 
             // Validate first name and last name (should not contain numbers)
             var nameRegex = /^[a-zA-Z\s]*$/;
@@ -141,6 +154,12 @@
             // Validate password and confirm password match
             if (password !== confirmPassword) {
                 alert("Passwords do not match.");
+                return false;
+            }
+
+            // Validate department selection
+            if (department === "") {
+                alert("Please select a department.");
                 return false;
             }
 
