@@ -82,10 +82,7 @@
                 </div>
                 <!-- Table container -->
                 <div class="card" id="myTable" style="padding: 20px; height:61vh; overflow-y: auto;">
-                    <!-- Include the table content here -->
-                    <table id="dataTable" class="table table-striped">
-                        <!-- Table headers will be filled dynamically -->
-                    </table>
+                    <!-- Table content will be dynamically added here -->
                 </div>
             </div>
         </div>
@@ -95,24 +92,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
     
     <script>
-        document.getElementById('exportBtn').addEventListener('click', function() {
-            var table = document.getElementById('dataTable');
-            if (table.rows.length <= 1) { // Check if table has no data rows (excluding header)
-                alert('No data to export. Please upload a file first.');
-                return;
-            }
-            
-            var ws = XLSX.utils.table_to_sheet(table);
-            var wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-            XLSX.writeFile(wb, 'exported_data.xlsx');
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            var file = e.target.files[0];
+            var reader = new FileReader();
+            reader.readAsBinaryString(file);
+            reader.onload = function(e) {
+                var data = e.target.result;
+                var workbook = XLSX.read(data, { type: 'binary' });
+                var sheetName = workbook.SheetNames[0];
+                var sheet = workbook.Sheets[sheetName];
+                var htmlTable = XLSX.utils.sheet_to_html(sheet);
+
+                document.getElementById('myTable').innerHTML = htmlTable;
+            };
         });
 
         document.getElementById('updateDatabaseBtn').addEventListener('click', function() {
             var formData = new FormData();
-            var fileInput = document.getElementById('fileInput');
-            var file = fileInput.files[0];
-            formData.append('file', file);
+            formData.append('file', document.getElementById('fileInput').files[0]);
 
             fetch('upload.php', {
                 method: 'POST',
@@ -126,6 +123,19 @@
                 console.error('Error:', error);
                 alert('Error updating database!');
             });
+        });
+
+        document.getElementById('exportBtn').addEventListener('click', function() {
+            var table = document.getElementById('myTable');
+            if (table.children.length === 0) { // Check if table is empty
+                alert('No data to export. Please upload a file first.');
+                return;
+            }
+
+            var ws = XLSX.utils.table_to_sheet(table);
+            var wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+            XLSX.writeFile(wb, 'exported_data.xlsx');
         });
     </script>
 </body>
