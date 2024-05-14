@@ -37,28 +37,27 @@
             font-weight: bold;
         }
         tr:not(:nth-child(-n+2)):hover {
-    background-color: #f2f2f2;
-}
-
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-white">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#"><img src="images/Jindal logo Revised.png" width="100" alt=""></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse " id="navbarTogglerDemo02">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa-solid fa-user"></i>  sms@jindalsteel.com</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" aria-disabled="true"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
-              </li>
-            </ul>
-          </div>
+            <a class="navbar-brand" href="#"><img src="images/Jindal logo Revised.png" width="100" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarTogglerDemo02">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-user"></i> <span id="userEmail"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-disabled="true"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
     
@@ -122,6 +121,9 @@
                 var htmlTable = XLSX.utils.sheet_to_html(sheet);
 
                 document.getElementById('myTable').innerHTML = htmlTable;
+
+                // Calculate and update column 6 and column 11 values
+                updateCalculatedValues();
             };
         });
 
@@ -155,6 +157,52 @@
             XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
             XLSX.writeFile(wb, 'exported_data.xlsx');
         });
+        
+        // Function to update calculated values in the table
+        function updateCalculatedValues() {
+            var table = document.getElementById('myTable');
+            var rows = table.rows;
+
+            // Start from row 3 as the first two rows are header rows
+            for (var i = 2; i < rows.length; i++) {
+                var row = rows[i];
+                var col4 = parseInt(row.cells[3].textContent) || 0; // Value in column 4
+                var col5 = parseInt(row.cells[4].textContent) || 0; // Value in column 5
+                var col7 = parseInt(row.cells[6].textContent) || 0; // Value in column 7
+                var col8 = parseInt(row.cells[7].textContent) || 0; // Value in column 8
+                var col9 = parseInt(row.cells[8].textContent) || 0; // Value in column 9
+                var col10 = parseInt(row.cells[9].textContent) || 0; // Value in column 10
+
+                // Calculate values for column 6 and column 11
+                var col6 = col4 + col5;
+                var col11 = col4 + col5 + col7 + col8 + col9 + col10;
+
+                // Update the cells in the row with calculated values
+                row.cells[5].textContent = col6;
+                row.cells[10].textContent = col11;
+            }
+        }
+    </script>
+    <script>
+        // Function to get URL parameter by name
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+    
+        // Check if there is a message in the URL
+        var msg = getUrlParameter('msg');
+        if (msg === 'wrong_password') {
+            alert("Wrong password. Please try again.");
+        } else if (msg === 'username_not_found') {
+            alert("Username not found. You can register here.");
+        }
+    
+        // Get the email from URL parameter and display it
+        var email = getUrlParameter('email');
+        document.getElementById('userEmail').textContent = email;
     </script>
 </body>
 </html>

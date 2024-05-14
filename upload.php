@@ -31,20 +31,25 @@ if ($_FILES['file']['error'] == 0) {
         for ($row = 3; $row <= $highestRow; $row++) {
             // Get cell values for each column
             $time = $sheet->getCell('A' . $row)->getValue();
-            $date = $sheet->getCell('B' . $row)->getValue();
+            $date = $sheet->getCell('B' . $row)->getValue(); // Assuming date is in the format "01-Nov-2023"
+
+            // Convert date format from "01-Nov-2023" to "YYYY-MM-DD" for MySQL
+            $dateParts = explode('-', $date);
+            $newDate = $dateParts[2] . '-' . date('m', strtotime($dateParts[1])) . '-' . $dateParts[0];
+
             $powerGeneration = $sheet->getCell('C' . $row)->getValue();
             $loadSechSMS2 = $sheet->getCell('D' . $row)->getValue();
             $loadSechSMS3 = $sheet->getCell('E' . $row)->getValue();
-            $loadSechSMSTotal = ($sheet->getCell('D' . $row)->getValue()+$sheet->getCell('E' . $row)->getValue());
+            $loadSechSMSTotal = ($loadSechSMS2 + $loadSechSMS3);
             $loadSechRailMill = $sheet->getCell('G' . $row)->getValue();
             $loadSechPlateMill = $sheet->getCell('H' . $row)->getValue();
             $loadSechSPM = $sheet->getCell('I' . $row)->getValue();
             $loadSechNSPL = $sheet->getCell('J' . $row)->getValue();
-            $total = ($sheet->getCell('D' . $row)->getValue()+$sheet->getCell('E' . $row)->getValue()+$sheet->getCell('G' . $row)->getValue()+$sheet->getCell('H' . $row)->getValue()+$sheet->getCell('I' . $row)->getValue()+$sheet->getCell('J' . $row)->getValue());
+            $total = ($loadSechSMSTotal + $loadSechRailMill + $loadSechPlateMill + $loadSechSPM + $loadSechNSPL);
 
             // Insert data into database
             $sql = "INSERT INTO power_table (TIME, DATE, POWER_GENERATION, LOAD_SECH_SMS2, LOAD_SECH_SMS3, LOAD_SECH_SMS_TOTAL, LOAD_SECH_RAILMILL, LOAD_SECH_PLATEMILL, LOAD_SECH_SPM, LOAD_SECH_NSPL, TOTAL) 
-                    VALUES ('$time', '$date', '$powerGeneration', '$loadSechSMS2', '$loadSechSMS3', '$loadSechSMSTotal', '$loadSechRailMill', '$loadSechPlateMill', '$loadSechSPM', '$loadSechNSPL', '$total')";
+                    VALUES ('$time', '$newDate', '$powerGeneration', '$loadSechSMS2', '$loadSechSMS3', '$loadSechSMSTotal', '$loadSechRailMill', '$loadSechPlateMill', '$loadSechSPM', '$loadSechNSPL', '$total')";
             if ($conn->query($sql) !== TRUE) {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
