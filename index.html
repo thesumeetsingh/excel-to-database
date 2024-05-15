@@ -86,13 +86,14 @@
                 <div class="container-fluid mb-3">
                     <div class="row">
                         <div class="col-auto">
-                            <label for="entriesSelect" class="form-label">Show entries:</label>
-                            <select class="form-select" id="entriesSelect" onchange="showEntries(this.value)">
-                                <option value="5" selected>5</option>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
+                            <label for="locationSelect" class="form-label">Select Location:</label>
+                            <select class="form-select" id="locationSelect">
+                                <option value="" selected disabled>Select Location</option>
+                                <option value="ANGUL">ANGUL</option>
+                                <option value="RAIGARH">RAIGARH</option>
+                                <option value="PATRATU">PATRATU</option>
+                                <option value="TAMNAR">TAMNAR</option>
+                                <option value="NALWA">NALWA</option>
                             </select>
                         </div>
                         <div class="col-auto">
@@ -101,6 +102,8 @@
                         </div>
                     </div>
                 </div>
+                
+                
                 <!-- Table container -->
                 <div class="card" id="myTable" style="padding: 20px; height:61vh; overflow-y: auto;">
                     <!-- Table content will be dynamically added here -->
@@ -133,7 +136,11 @@
 
         document.getElementById('updateDatabaseBtn').addEventListener('click', function() {
             var sheetDate = document.getElementById('sheetDate').value; // Get selected sheet date
-
+            var location = document.getElementById('locationSelect').value;
+            if (!location || location === "") {
+        alert('Please select a location.');
+        return;
+    }
             if (!sheetDate) {
                 alert('Please select a sheet date.');
                 return;
@@ -142,6 +149,7 @@
             var formData = new FormData();
             formData.append('file', document.getElementById('fileInput').files[0]);
             formData.append('sheetDate', sheetDate); // Add sheet date to form data
+            formData.append('location', location);
 
             fetch('upload.php', {
                 method: 'POST',

@@ -18,8 +18,10 @@ if ($_FILES['file']['error'] == 0) {
     // Get uploaded file data
     $file = $_FILES['file']['tmp_name'];
 
-    // Get the selected sheet date
+    // Get the selected sheet date and location
     $sheetDate = $_POST['sheetDate'];
+    $location = $_POST['location'];
+
     // Get current date and time
     $currentDateTime = date("Y-m-d H:i:s");
 
@@ -50,8 +52,8 @@ if ($_FILES['file']['error'] == 0) {
             $total = ($sheet->getCell('D' . $row)->getValue()+$sheet->getCell('E' . $row)->getValue()+$sheet->getCell('G' . $row)->getValue()+$sheet->getCell('H' . $row)->getValue()+$sheet->getCell('I' . $row)->getValue()+$sheet->getCell('J' . $row)->getValue());
 
             // Insert data into database with current date and time in UPDATED_ON column
-            $sql = "INSERT INTO power_table (TIME, DATE, POWER_GENERATION, LOAD_SECH_SMS2, LOAD_SECH_SMS3, LOAD_SECH_SMS_TOTAL, LOAD_SECH_RAILMILL, LOAD_SECH_PLATEMILL, LOAD_SECH_SPM, LOAD_SECH_NSPL, TOTAL, UPDATED_ON) 
-                    VALUES ('$time', '$date', '$powerGeneration', '$loadSechSMS2', '$loadSechSMS3', '$loadSechSMSTotal', '$loadSechRailMill', '$loadSechPlateMill', '$loadSechSPM', '$loadSechNSPL', '$total', '$currentDateTime')";
+            $sql = "INSERT INTO power_table (TIME, DATE, POWER_GENERATION, LOAD_SECH_SMS2, LOAD_SECH_SMS3, LOAD_SECH_SMS_TOTAL, LOAD_SECH_RAILMILL, LOAD_SECH_PLATEMILL, LOAD_SECH_SPM, LOAD_SECH_NSPL, TOTAL, UPDATED_ON, LOCATION) 
+                    VALUES ('$time', '$date', '$powerGeneration', '$loadSechSMS2', '$loadSechSMS3', '$loadSechSMSTotal', '$loadSechRailMill', '$loadSechPlateMill', '$loadSechSPM', '$loadSechNSPL', '$total', '$currentDateTime', '$location')";
             if ($conn->query($sql) !== TRUE) {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
