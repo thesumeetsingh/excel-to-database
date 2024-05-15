@@ -95,6 +95,10 @@
                                 <option value="100">100</option>
                             </select>
                         </div>
+                        <div class="col-auto">
+                            <label for="sheetDate" class="form-label">Select Sheet Date:</label>
+                            <input type="date" class="form-control" id="sheetDate">
+                        </div>
                     </div>
                 </div>
                 <!-- Table container -->
@@ -128,8 +132,16 @@
         });
 
         document.getElementById('updateDatabaseBtn').addEventListener('click', function() {
+            var sheetDate = document.getElementById('sheetDate').value; // Get selected sheet date
+
+            if (!sheetDate) {
+                alert('Please select a sheet date.');
+                return;
+            }
+
             var formData = new FormData();
             formData.append('file', document.getElementById('fileInput').files[0]);
+            formData.append('sheetDate', sheetDate); // Add sheet date to form data
 
             fetch('upload.php', {
                 method: 'POST',
@@ -200,7 +212,7 @@
             alert("Username not found. You can register here.");
         }
     
-        // Get the email from URL parameter and display it
+        // email from url
         var email = getUrlParameter('email');
         document.getElementById('userEmail').textContent = email;
     </script>
